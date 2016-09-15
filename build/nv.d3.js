@@ -1,4 +1,4 @@
-/* nvd3 version 1.8.5-sk-dev (https://github.com/novus/nvd3) 2016-09-15 */
+/* nvd3 version 1.8.5 (https://github.com/novus/nvd3) 2016-09-15 */
 (function(){
 
 // set up main nv object
@@ -14723,5 +14723,5 @@ nv.models.sunburstChart = function() {
 
 };
 
-nv.version = "1.8.5-sk-dev";
+nv.version = "1.8.5";
 })();
