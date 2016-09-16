@@ -1,4 +1,4 @@
-/* nvd3 version 1.8.5 (https://github.com/novus/nvd3) 2016-09-15 */
+/* nvd3 version 1.8.5 (https://github.com/novus/nvd3) 2016-09-16 */
 (function(){
 
 // set up main nv object
@@ -8125,11 +8125,11 @@ nv.models.multiBar = function() {
                     .attr('transform', function(d,i) {
                         var w = (x.rangeBand() / (stacked && !data[j].nonStackable ? 1 : data.length));
                         var sectionWidth = availableWidth/(bars.enter()[0].length - 1);
-                        if(bars.enter().length == 2)
-                            return 'translate(' + ((i-1)*w + i*w + (i*(sectionWidth - 2*w))) + ',0)';
-                        else
-                            return 'translate(' + ((i-0.5)*w + i*(sectionWidth - w)) + ',0)';
-                        // return 'translate(' + x(getX(d,i)) + ',0)';
+                        // if(bars.enter().length == 2)
+                        //     return 'translate(' + ((i-1)*w + i*w + (i*(sectionWidth - 2*w))) + ',0)';
+                        // else
+                        //     return 'translate(' + ((i-0.5)*w + i*(sectionWidth - w)) + ',0)';
+                        return 'translate(' + x(getX(d,i)) + ',0)';
                     })
                 ;
             bars
@@ -8182,11 +8182,11 @@ nv.models.multiBar = function() {
                 .attr('transform', function(d,i) {
                     var w = (x.rangeBand() / (stacked && !data[j].nonStackable ? 1 : data.length));
                     var sectionWidth = availableWidth/(bars.enter()[0].length - 1);
-                    if(bars.enter().length == 2)
-                        return 'translate(' + ((i-1)*w + i*w + (i*(sectionWidth - 2*w))) + ',0)';
-                    else
-                        return 'translate(' + ((i-0.5)*w + i*(sectionWidth - w)) + ',0)';
-                    // return 'translate(' + x(getX(d,i)) + ',0)';
+                    // if(bars.enter().length == 2)
+                    //     return 'translate(' + ((i-1)*w + i*w + (i*(sectionWidth - 2*w))) + ',0)';
+                    // else
+                    //     return 'translate(' + ((i-0.5)*w + i*(sectionWidth - w)) + ',0)';
+                    return 'translate(' + x(getX(d,i)) + ',0)';
                 })
 
             if (barColor) {
