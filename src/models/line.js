@@ -145,6 +145,7 @@ nv.models.line = function() {
                 .data(function(d) { return [d.values] });
 
             linePaths.enter().append('path')
+                .attr('stroke-dasharray', "5,5")
                 .attr('class', 'nv-line')
                 .attr('d',
                     d3.svg.line()

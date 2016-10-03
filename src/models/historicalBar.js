@@ -82,6 +82,7 @@ nv.models.historicalBar = function() {
                     });
                 });
 
+            var rectCornerRadius = 4;
             defsEnter.append('clipPath')
                 .attr('id', 'nv-chart-clip-path-' + id)
                 .append('rect');
@@ -96,9 +97,12 @@ nv.models.historicalBar = function() {
                 .data(function(d) { return d }, function(d,i) {return getX(d,i)});
             bars.exit().remove();
 
+
             bars.enter().append('rect')
                 .attr('x', 0 )
                 .attr('y', function(d,i) {  return nv.utils.NaNtoZero(y(Math.max(0, getY(d,i)))) })
+                .attr('rx', rectCornerRadius)
+                .attr('ry', rectCornerRadius)
                 .attr('height', function(d,i) { return nv.utils.NaNtoZero(Math.abs(y(getY(d,i)) - y(0))) })
                 .attr('transform', function(d,i) { return 'translate(' + (x(getX(d,i)) - availableWidth / data[0].values.length * .45) + ',0)'; })
                 .on('mouseover', function(d,i) {
@@ -153,7 +157,7 @@ nv.models.historicalBar = function() {
                 .watchTransition(renderWatch, 'bars')
                 .attr('transform', function(d,i) { return 'translate(' + (x(getX(d,i)) - availableWidth / data[0].values.length * .45) + ',0)'; })
                 //TODO: better width calculations that don't assume always uniform data spacing;w
-                .attr('width', (availableWidth / data[0].values.length) * .9 );
+                .attr('width', (availableWidth / data[0].values.length) * .9 - 2*rectCornerRadius);
 
             bars.watchTransition(renderWatch, 'bars')
                 .attr('y', function(d,i) {
