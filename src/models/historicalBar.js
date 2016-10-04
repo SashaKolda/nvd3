@@ -82,7 +82,7 @@ nv.models.historicalBar = function() {
                     });
                 });
 
-            var rectCornerRadius = 4;
+            var rectCornerRadius = 2;
             defsEnter.append('clipPath')
                 .attr('id', 'nv-chart-clip-path-' + id)
                 .append('rect');
