@@ -151,13 +151,20 @@ nv.models.historicalBar = function() {
                     d3.event.stopPropagation();
                 });
 
+            var barWidth = (availableWidth / data[0].values.length) * .9 - 2*rectCornerRadius;
+            var maxAcceptableWidth = 75;
+            var translateOffsetX = 0;
+            if (barWidth > maxAcceptableWidth) {
+                translateOffsetX = (barWidth-maxAcceptableWidth)/2;
+                barWidth = maxAcceptableWidth;
+            }
             bars
                 .attr('fill', function(d,i) { return color(d, i); })
                 .attr('class', function(d,i,j) { return (getY(d,i) < 0 ? 'nv-bar negative' : 'nv-bar positive') + ' nv-bar-' + j + '-' + i })
                 .watchTransition(renderWatch, 'bars')
-                .attr('transform', function(d,i) { return 'translate(' + (x(getX(d,i)) - availableWidth / data[0].values.length * .45) + ',0)'; })
+                .attr('transform', function(d,i) { return 'translate(' + (x(getX(d,i)) - availableWidth / data[0].values.length * .45 + translateOffsetX) + ',0)'; })
                 //TODO: better width calculations that don't assume always uniform data spacing;w
-                .attr('width', (availableWidth / data[0].values.length) * .9 - 2*rectCornerRadius);
+                .attr('width', barWidth);
 
             bars.watchTransition(renderWatch, 'bars')
                 .attr('y', function(d,i) {
